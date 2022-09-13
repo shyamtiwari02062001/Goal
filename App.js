@@ -6,10 +6,15 @@ const App = () => {
   const [courseGoals, setCourseGoals] = useState([]);
 
   const addGoalHandler = goal => {
-    setCourseGoals(currentCourseGoal => [...currentCourseGoal, goal]);
+    setCourseGoals(currentCourseGoal => [
+      ...currentCourseGoal,
+      {text: goal, id: Math.random().toString()},
+    ]);
   };
-  const deleteGoalHandler = () => {
-    console.log('delete');
+  const deleteGoalHandler = id => {
+    setCourseGoals(currentCourseGoal => {
+      return currentCourseGoal.filter(goal => goal.id !== id);
+    });
   };
   return (
     <View style={styles.appContainer}>
@@ -20,8 +25,15 @@ const App = () => {
           data={courseGoals}
           renderItem={itemData => {
             return (
-              <GoalItem text={itemData.item} deleteGoal={deleteGoalHandler} />
+              <GoalItem
+                text={itemData.item.text}
+                id={itemData.item.id}
+                deleteGoal={deleteGoalHandler}
+              />
             );
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
           }}
         />
       </View>
