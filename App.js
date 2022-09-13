@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16,
     flex: 1,
+    backgroundColor: '#311b6b',
   },
   goalsContainer: {
     flex: 5,

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     padding: 8,
     borderRadius: 10,
-    color: 'black',
+    color: 'white',
   },
   buttonContainer: {
     flexDirection: 'row',
