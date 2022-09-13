@@ -8,6 +8,9 @@ const App = () => {
   const addGoalHandler = goal => {
     setCourseGoals(currentCourseGoal => [...currentCourseGoal, goal]);
   };
+  const deleteGoalHandler = () => {
+    console.log('delete');
+  };
   return (
     <View style={styles.appContainer}>
       <GoalInput addGoal={addGoalHandler} />
@@ -16,7 +19,9 @@ const App = () => {
           showsVerticalScrollIndicator={false}
           data={courseGoals}
           renderItem={itemData => {
-            return <GoalItem text={itemData.item} />;
+            return (
+              <GoalItem text={itemData.item} deleteGoal={deleteGoalHandler} />
+            );
           }}
         />
       </View>
