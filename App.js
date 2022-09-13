@@ -10,6 +10,7 @@ const App = () => {
       ...currentCourseGoal,
       {text: goal, id: Math.random().toString()},
     ]);
+    setModalVisible(false);
   };
   const deleteGoalHandler = id => {
     setCourseGoals(currentCourseGoal => {
@@ -19,6 +20,9 @@ const App = () => {
   const startAddGoalHandler = () => {
     setModalVisible(true);
   };
+  const endAddGoalHandler = () => {
+    setModalVisible(false);
+  };
   return (
     <View style={styles.appContainer}>
       <Button
@@ -27,7 +31,11 @@ const App = () => {
         onPress={() => startAddGoalHandler()}
       />
       {isModalVisible && (
-        <GoalInput visible={isModalVisible} addGoal={addGoalHandler} />
+        <GoalInput
+          visible={isModalVisible}
+          endAddGoalHandler={endAddGoalHandler}
+          addGoal={addGoalHandler}
+        />
       )}
       <View style={styles.goalsContainer}>
         <FlatList
