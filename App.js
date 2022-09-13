@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   Button,
-  ScrollView,
+  FlatList,
 } from 'react-native';
 const App = () => {
   const [goal, setGoal] = useState('');
@@ -29,13 +29,17 @@ const App = () => {
         <Button onPress={() => addGoalHandler()} title="Add" />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {courseGoals.map((item, index) => (
-            <View style={styles.goalItem} key={index}>
-              <Text style={styles.goalText}>{item}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={courseGoals}
+          renderItem={itemData => {
+            return (
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
     </View>
   );
